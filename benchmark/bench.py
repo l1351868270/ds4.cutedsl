@@ -152,6 +152,7 @@ def main(
     torch.manual_seed(33377335)
     with open(config) as f:
         args = ModelArgs(**json.load(f))
+        args.max_seq_len = ctx_max
     print(args)
     with torch.device("cuda"):
         model = Transformer(args)
@@ -170,7 +171,8 @@ def main(
 
     if (csv_path):
         with open(csv_path, "w", encoding="utf-8") as out:
-            out.write("ctx_tokens,prefill_tokens,prefill_tps,gen_tokens,gen_tps\n")
+            # out.write("ctx_tokens,prefill_tokens,prefill_tps,gen_tokens,gen_tps\n")
+            out.write("ctx_tokens,prefill_tps,gen_tokens,gen_tps\n")
             out.flush()
     else:
         print("ctx_tokens,prefill_tokens,prefill_tps,gen_tokens,gen_tps,kvcache_bytes", flush=True);
@@ -184,14 +186,17 @@ def main(
         prefill_tokens = frontier - previous
         prefill_sec = info["prefill_t1"] - info["prefill_t0"]
         gen_sec = info["gen_t1"] - info["gen_t0"]
+
+        # previous = frontier
         frontier = next_frontier(ctx_max, step_mul, step_incr, frontier)
-        previous = frontier
+        
         for prompt, completion in zip(prompt_token, completions):
             print("Prompt:", prompt)
             print("Completion:", completion)
         if csv_path:
             with open(csv_path, "a", encoding="utf-8") as out:
-                out.write(f"{frontier},{prompt_token},{prefill_tokens / prefill_sec if prefill_sec > 0.0 else 0.0:.2f},{gen_tokens},{gen_tokens / gen_sec if gen_sec > 0.0 else 0.0:.2f}\n")
+                # out.write(f"{frontier},{prompt_token},{prefill_tokens / prefill_sec if prefill_sec > 0.0 else 0.0:.2f},{gen_tokens},{gen_tokens / gen_sec if gen_sec > 0.0 else 0.0:.2f}\n")
+                out.write(f"{frontier},{prefill_tokens / prefill_sec if prefill_sec > 0.0 else 0.0:.2f},{gen_tokens},{gen_tokens / gen_sec if gen_sec > 0.0 else 0.0:.2f}\n")
                 out.flush()
         else:
             print(f"{frontier},{prompt_token},{prefill_tokens / prefill_sec if prefill_sec > 0.0 else 0.0:.2f},{gen_tokens},{gen_tokens / gen_sec if gen_sec > 0.0 else 0.0:.2f}", flush=True)
