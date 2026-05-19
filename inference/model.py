@@ -687,16 +687,24 @@ class Block(nn.Module):
 
     def forward(self, x: torch.Tensor, start_pos: int, input_ids: Optional[torch.Tensor]) -> torch.Tensor:
         residual = x
-        x, post, comb = self.hc_pre(x, self.hc_attn_fn, self.hc_attn_scale, self.hc_attn_base)
-        x = self.attn_norm(x)
-        x = self.attn(x, start_pos)
-        x = self.hc_post(x, residual, post, comb)
+        with torch.cuda.nvtx.range(f"hc_pre_{self.layer_id}"):
+            x, post, comb = self.hc_pre(x, self.hc_attn_fn, self.hc_attn_scale, self.hc_attn_base)
+        with torch.cuda.nvtx.range(f"attn_norm_{self.layer_id}"):
+            x = self.attn_norm(x)
+        with torch.cuda.nvtx.range(f"attn_{self.layer_id}"):
+            x = self.attn(x, start_pos)
+        with torch.cuda.nvtx.range(f"hc_post_{self.layer_id}"):
+            x = self.hc_post(x, residual, post, comb)
 
         residual = x
-        x, post, comb = self.hc_pre(x, self.hc_ffn_fn, self.hc_ffn_scale, self.hc_ffn_base)
-        x = self.ffn_norm(x)
-        x = self.ffn(x, input_ids)
-        x = self.hc_post(x, residual, post, comb)
+        with torch.cuda.nvtx.range(f"hc_pre_{self.layer_id}"):
+            x, post, comb = self.hc_pre(x, self.hc_ffn_fn, self.hc_ffn_scale, self.hc_ffn_base)
+        with torch.cuda.nvtx.range(f"ffn_norm_{self.layer_id}"):
+            x = self.ffn_norm(x)
+        with torch.cuda.nvtx.range(f"ffn_{self.layer_id}"):
+            x = self.ffn(x, input_ids)
+        with torch.cuda.nvtx.range(f"hc_post_{self.layer_id}"):
+            x = self.hc_post(x, residual, post, comb)
         return x
 
 
