@@ -6,3 +6,4 @@ Use the official implementation of DeepSeek as the baseline.
 
 TODO: 
 1. https://arxiv.org/pdf/2605.02568
+2. [CODA: Rewriting Transformer Blocks as GEMM-Epilogue Programs](https://arxiv.org/pdf/2605.19269)
