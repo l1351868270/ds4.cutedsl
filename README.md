@@ -7,3 +7,4 @@ Use the official implementation of DeepSeek as the baseline.
 TODO: 
 1. https://arxiv.org/pdf/2605.02568
 2. [CODA: Rewriting Transformer Blocks as GEMM-Epilogue Programs](https://arxiv.org/pdf/2605.19269)
+3. https://github.com/NVIDIA/Megatron-LM/issues/4957
