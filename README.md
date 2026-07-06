@@ -8,3 +8,4 @@ TODO:
 1. https://arxiv.org/pdf/2605.02568
 2. [CODA: Rewriting Transformer Blocks as GEMM-Epilogue Programs](https://arxiv.org/pdf/2605.19269)
 3. https://github.com/NVIDIA/Megatron-LM/issues/4957
+4. https://zhuanlan.zhihu.com/p/2035845795082133865
