@@ -15,3 +15,4 @@ TODO:
 8. [Fleet: Hierarchical Task-based Abstraction for Megakernels on Multi-Die GPUs](https://arxiv.org/pdf/2604.15379)
 9. [1T 模型通往 1000 Tokens/s 的两次跃迁：关于推理系统、执行边界与 Co-Design](https://www.tilert.ai/blog/breaking-1000-tps-zh.html)
 10. [速度：大模型推理的下一个 Scaling Law](https://www.tilert.ai/blog/speed-as-the-next-scaling-law-zh.html)
+11. [IndexCache: Accelerating Sparse Attention via Cross-Layer Index Reuse](https://arxiv.org/pdf/2603.12201)
