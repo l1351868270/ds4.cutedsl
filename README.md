@@ -10,3 +10,6 @@ TODO:
 3. https://github.com/NVIDIA/Megatron-LM/issues/4957
 4. https://zhuanlan.zhihu.com/p/2035845795082133865
 5. [Welder: Scheduling Deep Learning Memory Access via Tile-graph](https://www.usenix.org/system/files/osdi23-shi.pdf)
+6. [Building a single-kernel, latency-optimized LLM inference engine on AMD MI300X GPUs](https://blog.kog.ai/building-a-single-kernel-latency-optimized-llm-inference-engine-on-amd-mi300x-gpus/)
+7. [Welder: Scheduling Deep Learning Memory Access via Tile-graph](https://arxiv.org/pdf/2604.15379)
+8. [Fleet: Hierarchical Task-based Abstraction for Megakernels on Multi-Die GPUs](https://arxiv.org/pdf/2604.15379)
