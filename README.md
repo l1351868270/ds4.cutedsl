@@ -13,3 +13,5 @@ TODO:
 6. [Building a single-kernel, latency-optimized LLM inference engine on AMD MI300X GPUs](https://blog.kog.ai/building-a-single-kernel-latency-optimized-llm-inference-engine-on-amd-mi300x-gpus/)
 7. [Welder: Scheduling Deep Learning Memory Access via Tile-graph](https://arxiv.org/pdf/2604.15379)
 8. [Fleet: Hierarchical Task-based Abstraction for Megakernels on Multi-Die GPUs](https://arxiv.org/pdf/2604.15379)
+9. [1T 模型通往 1000 Tokens/s 的两次跃迁：关于推理系统、执行边界与 Co-Design](https://www.tilert.ai/blog/breaking-1000-tps-zh.html)
+10. [速度：大模型推理的下一个 Scaling Law](https://www.tilert.ai/blog/speed-as-the-next-scaling-law-zh.html)
